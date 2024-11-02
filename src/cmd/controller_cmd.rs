@@ -8,31 +8,42 @@ pub struct ControllerCommand {
 }
 
 #[derive(Debug, Subcommand)]
-#[clap(verbatim_doc_comment)] // Pour forcer a prendre en compte les sautes de lignes
-/// The Controller entity. Used to manage controller based on the existing Models
-/// more documentation here: https://www.google.fr
+
 pub enum ControllerSubcommand {
-    /// Generate a new controller based on existing model.
-    /// You can see the complete documentation of the cntroller's command here: https://google.com
+    /// Generate a new Controller based on existing Model in the project.
+    /// You can see the complete documentation of the `generate` command here:
+    /// https://google.com
+    /// ______________________________________________________________________________________
+    #[clap(verbatim_doc_comment)]
     Generate(GenerateController),
 }
 
 
 #[derive(Debug, Args)]
 pub struct GenerateController {
-    /// The name of the controller to generate, Optionnal if you use the option --all
-    /// to generate all controller based on existing models
+    /// Specifies the name of the controller to generate.
+    /// Optional if the `--all` option is used to generate controller for all existing Models.
+    /// If `--all` is false, the [name] argument is required.
+    #[clap(verbatim_doc_comment)]
     pub name: Option<String>,
 
+    /// Default: false.
+    /// Generates controller for all existing Models.
+    /// Set `--all` to create controller for each Model in the project.
+    /// If set to false, you must specify a [name] for the model.
     #[arg(short, long)]
-    /// Option to generate controller based on all existing models.
-    /// if all=false: need to specify the [NAME] argument.
-    /// Default is false.
     #[clap(verbatim_doc_comment)]
     pub all: bool,
 
+    /// Specifies the controller generation mode: `web`, `api`, or `crud`.
+    /// Choose the mode that best matches the type of functionality you need for the controller:
+    /// - `web`: for web controllers handling HTML requests and responses
+    /// - `api`: for API controllers designed to manage JSON or XML data
+    /// - `crud`: for CRUD operations on resources within the application
+    ///
+    /// For more information on each mode, refer to the documentation at:
+    /// https://www.google.com
     #[arg(short, long)]
-    /// Controller mode to generate, web, api, crud
-    /// see https://www.google.com to see more information about the <MODE> option
+    #[clap(verbatim_doc_comment)]
     pub mode: String,
 }

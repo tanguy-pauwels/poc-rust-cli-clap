@@ -8,24 +8,29 @@ pub struct ModelCommand {
 }
 
 #[derive(Debug, Subcommand)]
-/// The Model entity. Used to manage models based on the database's tables
-/// more documentation here: https://www.google.fr
 pub enum ModelSubcommand {
     /// Generate a new Model based on existing Table in the database.
-    /// You can see the complete documentation of the models's command here: https://google.com
+    /// You can see the complete documentation of the `generate` command here:
+    /// https://google.com
+    /// ______________________________________________________________________________________
+    #[clap(verbatim_doc_comment)]
     Generate(GenerateModel),
 }
 
 
 #[derive(Debug, Args)]
 pub struct GenerateModel {
-    /// The name of the Model to generate, Optionnal if you use the option --all
-    /// to generate all model based on existing DB Tables
+    /// Specifies the name of the model to generate.
+    /// Optional if the `--all` option is used to generate models for all existing database tables.
+    /// If `--all` is false, the [name] argument is required.
+    #[clap(verbatim_doc_comment)]
     pub name: Option<String>,
 
+    /// Default: false.
+    /// Generates models for all existing database tables.
+    /// Set `--all` to true to create models for each table in the current database schema.
+    /// If set to false, you must specify a [name] for the model.
     #[arg(short, long)]
-    /// Option to generate Model based on all existing DB Table.
-    /// if all=false: need to specify the [NAME] argument.
-    /// Default is false.
+    #[clap(verbatim_doc_comment)]
     pub all: bool,
 }

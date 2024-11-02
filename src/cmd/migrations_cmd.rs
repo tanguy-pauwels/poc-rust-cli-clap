@@ -8,17 +8,34 @@ pub struct MigrationCommand {
 }
 
 #[derive(Debug, Subcommand)]
-/// The Migration entity. Used to manage migrations using Diesel
-/// more documentation here: https://www.google.fr
 pub enum MigrationSubcommand {
-    /// generate a migration folder named based on the name passed in argument
-    /// with up.sql and down.sql inside.
+    /// Creates a migration folder named in the format yyyy-mm-dd-timestamp_name
+    /// with up.sql and down.sql files.
+    /// You can see the complete documentation of the `generate` command here:
+    /// https://google.com
+    /// ______________________________________________________________________________________
+    #[clap(verbatim_doc_comment)]
     Generate(GenerateMigration),
-    /// Runs all pending migrations, as determined by barkeel's internal schema table.
+
+    /// Executes all pending migrations, as determined by barkeel's internal schema table.
+    /// You can see the complete documentation of the `run` command here:
+    /// https://google.com
+    /// ______________________________________________________________________________________
+    #[clap(verbatim_doc_comment)]
     Run(RunMigration),
-    /// Runs the down.sql for the most recent migration.
+
+    /// Executes the down.sql file of the most recent migration to revert changes.
+    /// You can see the complete documentation of the `revert` command here:
+    /// https://google.com
+    /// ______________________________________________________________________________________
+    #[clap(verbatim_doc_comment)]
     Revert(RevertMigration),
-    /// Runs the down.sql and then the up.sql for the most recent migration.
+
+    /// Executes the down.sql followed by the up.sql of the most recent migration.
+    /// You can see the complete documentation of the `redo` command here:
+    /// https://google.com
+    /// ______________________________________________________________________________________
+    #[clap(verbatim_doc_comment)]
     Redo(RedoMigration),
 }
 

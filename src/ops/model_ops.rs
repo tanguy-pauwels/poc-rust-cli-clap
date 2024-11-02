@@ -1,13 +1,30 @@
+use colored::Colorize;
 use crate::cmd::model_cmd::*;
 
 pub fn generate_model(args: &GenerateModel) {
     if !args.all && args.name.is_none() {
-        println!("{}", "\nParameter [NAME] is required when --all isn't specified \n\
-                        \nUsage: barkeel model generate [OPTIONS] [NAME] \n\
-                        \ntry: \n barkeel model generate [NAME] : to generate a model by specifing his name \
-                        \nor: \n barkeel model generate --all : to generate all the model by existings database's tables \n\
-                        \nsee: barkeel model generate --help to see more information"
-            .to_string());
+        println!(
+            "{}",
+            format!(
+                "\n{} Missing required parameter {}.\n\
+            \nWhen the {} option is not specified, you must provide a model name.\n\
+            \n{}:\n\
+            \t barkeel model generate [OPTIONS] [NAME]\n\
+            \nExamples:\n\
+            \t {} barkeel model generate my_model \n\
+            \t   (Generates a model with the specified name)\n\
+            \n\t {} barkeel model generate --all \n\
+            \t   (Generates models for all existing models)\n\
+            \nFor more information, try:\n\
+            \t  barkeel model generate {}\n",
+                "Error:".red().bold(),
+                "[NAME]".yellow().bold(),
+                "--all".cyan().bold(),
+                "Usage".blue().bold(),
+                "Example:".green().bold(),
+                "Example:".green().bold(),
+                "--help".cyan().bold()
+            ));
     } else {
         println!("Creating model with parameters {:?}", args);
     }
