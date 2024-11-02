@@ -29,3 +29,7 @@ pub fn generate_model(args: &GenerateModel) {
         println!("Creating model with parameters {:?}", args);
     }
 }
+
+//pub fn generate_model(args: &GenerateModel) {
+//    println!("Creating model with parameters {:?}", args);
+//}
